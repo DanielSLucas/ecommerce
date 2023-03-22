@@ -36,8 +36,8 @@ CREATE TABLE [dbo].[category] (
 CREATE TABLE [dbo].[product_category] (
     [id]           INT           NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
     [product_id]   INT           NOT NULL,
-    CONSTRAINT     FK_PRODUCT_CATEGORY FOREIGN KEY ([product_id]) REFERENCES [dbo].[product]([id]),
     [category_id]  INT           NOT NULL,
+    CONSTRAINT     FK_PRODUCT_CATEGORY FOREIGN KEY ([product_id]) REFERENCES [dbo].[product]([id]),
     CONSTRAINT     FK_CATEGORY_PRODUCT FOREIGN KEY ([category_id]) REFERENCES [dbo].[category]([id])    
 );
 
@@ -58,15 +58,15 @@ CREATE TABLE [dbo].[cart] (
 CREATE TABLE [dbo].[cart_product] (
     [id]            INT             NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
     [cart_id]       INT             NOT NULL,
-    CONSTRAINT      FK_CART_PRODUCT FOREIGN KEY ([category_id]) REFERENCES [dbo].[category]([id]),
     [product_id]    INT             NOT NULL,
+    CONSTRAINT      FK_CART_PRODUCT FOREIGN KEY ([cart_id]) REFERENCES [dbo].[cart]([id]),
     CONSTRAINT      FK_PRODUCT_CART FOREIGN KEY ([product_id]) REFERENCES [dbo].[product]([id])    
 );
 
 CREATE TABLE [dbo].[order] (
-    [id]       INT          NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
-    [date]     DATETIME     NOT NULL  DEFAULT(NOW()),
+    [id]       INT           NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
+    [date]     DATETIME      NOT NULL  DEFAULT         CURRENT_TIMESTAMP,
     [status]   NVARCHAR (50) NULL,
-    [cart_id]  INT          NOT NULL,
-    CONSTRAINT FK_CART_PRODUCT FOREIGN KEY ([category_id]) REFERENCES [dbo].[category]([id]),    
+    [cart_id]  INT           NOT NULL,
+    CONSTRAINT FK_CART_ORDER FOREIGN KEY ([cart_id]) REFERENCES [dbo].[cart]([id]),    
 );
