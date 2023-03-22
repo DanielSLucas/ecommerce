@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[user]
+CREATE TABLE [dbo].[user]
 (
-	[id]       INT            NOT NULL PRIMARY KEY      IDENTITY (1, 1),
-	[name]     NVARCHAR (150) NOT NULL,
+    [id]       INT            NOT NULL PRIMARY KEY      IDENTITY (1, 1),
+    [name]     NVARCHAR (150) NOT NULL,
     [cpf]      NVARCHAR (11)  NOT NULL,
     [tel]      NCHAR (11)     NOT NULL,
     [is_adm]   BIT            NOT NULL,
