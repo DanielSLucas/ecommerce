@@ -41,7 +41,7 @@ CREATE TABLE [dbo].[product_category] (
     CONSTRAINT     FK_CATEGORY_PRODUCT FOREIGN KEY ([category_id]) REFERENCES [dbo].[category]([id])    
 );
 
-CREATE TABLE [dbo].[product_ímage] (
+CREATE TABLE [dbo].[product_image] (
     [id]          INT             NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
     [filename]    NVARCHAR (50)   NOT NULL,
     [product_id]  INT             NOT NULL,
@@ -49,9 +49,9 @@ CREATE TABLE [dbo].[product_ímage] (
 );
 
 CREATE TABLE [dbo].[cart] (
-    [id]       INT          NOT NULL    PRIMARY KEY     IDENTITY (1, 1),    
-    [is_adm]   BIT          NOT NULL,
-    [user_id]  INT          NOT NULL,
+    [id]          INT          NOT NULL    PRIMARY KEY     IDENTITY (1, 1),    
+    [is_active]   BIT          NOT NULL,
+    [user_id]     INT          NOT NULL,
     CONSTRAINT FK_USER_CART FOREIGN KEY ([user_id]) REFERENCES [dbo].[user]([id])
 );
 
