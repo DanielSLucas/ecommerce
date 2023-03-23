@@ -5,10 +5,13 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Configuration;
+using System.Web.Management;
 
-/// <summary>
-/// Descrição resumida de SqlService
-/// </summary>
+// private static SqlService sqlService = new SqlService(
+//        ConfigurationManager.ConnectionStrings["agendaWS"].ConnectionString
+//    );
+// private static BaseRepository<Contact> contactsRepository = new BaseRepository<Contact>("contatos", sqlService);
 public class SqlService
 {
     private SqlConnection con;
@@ -29,7 +32,7 @@ public class SqlService
         return intance;
     }
 
-    public DataSet query(String SQL)
+    public DataSet executeQuery(String SQL)
     {
         DataSet ds = new DataSet();
         SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -40,7 +43,7 @@ public class SqlService
         return ds;
     }
 
-    public void nonQuery(String SQL)
+    public void executeNonQuery(String SQL)
     {
         SqlCommand cmd = new SqlCommand(SQL, con);
 
