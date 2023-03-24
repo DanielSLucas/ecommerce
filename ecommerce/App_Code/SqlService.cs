@@ -8,10 +8,6 @@ using System.Drawing;
 using System.Configuration;
 using System.Web.Management;
 
-// private static SqlService sqlService = new SqlService(
-//        ConfigurationManager.ConnectionStrings["agendaWS"].ConnectionString
-//    );
-// private static BaseRepository<Contact> contactsRepository = new BaseRepository<Contact>("contatos", sqlService);
 public class SqlService
 {
     private SqlConnection con;
@@ -39,7 +35,7 @@ public class SqlService
 
         dataAdapter.SelectCommand = new SqlCommand(SQL, con);
         dataAdapter.Fill(ds);
-
+        
         return ds;
     }
 

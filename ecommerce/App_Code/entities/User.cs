@@ -15,4 +15,14 @@ public class User
     public bool is_adm { get; set; }
     public string password { get; set; }
     public string email { get; set; }
+
+    public User(string name, string cpf, string tel, bool is_adm, string password, string email)
+    {
+        this.name = name;
+        this.cpf = cpf;
+        this.tel = tel;
+        this.is_adm = is_adm;
+        this.password = password;
+        this.email = email;
+    }
 }
