@@ -2,11 +2,11 @@ CREATE TABLE [dbo].[user]
 (
     [id]       INT            NOT NULL PRIMARY KEY      IDENTITY (1, 1),
     [name]     NVARCHAR (150) NOT NULL,
-    [cpf]      NVARCHAR (11)  NOT NULL,
-    [tel]      NCHAR (11)     NOT NULL,
+    [cpf]      NVARCHAR (11)  NOT NULL UNIQUE,
+    [tel]      NCHAR (11)     NOT NULL UNIQUE,
     [is_adm]   BIT            NOT NULL,
     [password] NCHAR (10)     NOT NULL,
-    [email]    NVARCHAR (50)  NOT NULL
+    [email]    NVARCHAR (50)  NOT NULL UNIQUE
 );
 
 CREATE TABLE [dbo].[address] (
@@ -23,6 +23,7 @@ CREATE TABLE [dbo].[address] (
 
 CREATE TABLE [dbo].[product] (
     [id]          INT             NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
+    [slug]        NVARCHAR (150)  NOT NULL  UNIQUE,
     [name]        NVARCHAR (100)  NOT NULL,
     [description] TEXT            NOT NULL,
     [price]       DECIMAL (10, 2) NOT NULL    
@@ -30,7 +31,7 @@ CREATE TABLE [dbo].[product] (
 
 CREATE TABLE [dbo].[category] (
     [id]          INT             NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
-    [name]        NVARCHAR (50)   NOT NULL    
+    [name]        NVARCHAR (50)   NOT NULL  UNIQUE    
 );
 
 CREATE TABLE [dbo].[product_category] (
@@ -43,7 +44,7 @@ CREATE TABLE [dbo].[product_category] (
 
 CREATE TABLE [dbo].[product_image] (
     [id]          INT             NOT NULL  PRIMARY KEY     IDENTITY (1, 1),
-    [filename]    NVARCHAR (50)   NOT NULL,
+    [filename]    NVARCHAR (50)   NOT NULL  UNIQUE,
     [product_id]  INT             NOT NULL,
     CONSTRAINT    FK_PRODUCT_IMAGE FOREIGN KEY ([product_id]) REFERENCES [dbo].[product]([id]),
 );
