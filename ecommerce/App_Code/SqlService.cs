@@ -11,7 +11,7 @@ using System.Web.Management;
 public class SqlService
 {
     private SqlConnection con;
-    private static SqlService intance = null;
+    private static SqlService instance = null;
 
     public SqlService(String connectionString)
     {
@@ -20,12 +20,12 @@ public class SqlService
 
     public static SqlService getInstance(String connectionString)
     {
-        if(getInstance == null)
+        if(instance == null)
         {
-            intance = new SqlService(connectionString);
+            instance = new SqlService(connectionString);
         }
 
-        return intance;
+        return instance;
     }
 
     public DataSet executeQuery(String SQL)
